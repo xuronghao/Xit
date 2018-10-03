@@ -5,6 +5,14 @@ enum PreferenceKeys
 {
   static let deemphasizeMerges = "deemphasizeMerges"
   static let collapseHistory = "collapseHistory"
+  static let statusInTabs = "statusInTabs"
+}
+
+enum StatusInTabs: Int
+{
+  case multipleOnly
+  case never
+  case always
 }
 
 extension UserDefaults
@@ -21,7 +29,7 @@ extension UserDefaults
     }
   }
   @objc dynamic var deemphasizeMerges: Bool
-    {
+  {
     get
     {
       return bool(forKey: PreferenceKeys.deemphasizeMerges)
@@ -29,6 +37,18 @@ extension UserDefaults
     set
     {
       set(newValue, forKey: PreferenceKeys.deemphasizeMerges)
+    }
+  }
+  var statusInTabs: StatusInTabs
+  {
+    get
+    {
+      return StatusInTabs(rawValue: integer(forKey: PreferenceKeys.statusInTabs))
+             ?? .multipleOnly
+    }
+    set
+    {
+      set(newValue.rawValue, forKey: PreferenceKeys.statusInTabs)
     }
   }
 }
