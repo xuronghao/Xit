@@ -215,6 +215,17 @@ extension SideBarDataSource: NSOutlineViewDelegate
     }
   }
   
+  fileprivate func makeStatusButton() -> NSButton
+  {
+    let button = NSButton(frame: NSRect(x: 0, y: 0, width: 44, height: 17))
+    
+    button.bezelStyle = .inline
+    button.setButtonType(.momentaryPushIn)
+    button.controlSize = .small
+    button.font = NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+    return button
+  }
+  
   fileprivate func configureStagingItem(sideBarItem: SidebarItem,
                                         dataView: SidebarTableCellView)
   {
@@ -228,9 +239,17 @@ extension SideBarDataSource: NSOutlineViewDelegate
     if (stagedCount != 0) || (unstagedCount != 0) {
       dataView.statusText.title = "\(unstagedCount)▸\(stagedCount)"
       dataView.statusText.isHidden = false
+      
+      let tabButton = outline.window?.tab.accessoryView as? NSButton ??
+                      makeStatusButton()
+      
+      tabButton.title = dataView.statusText.title
+      tabButton.setFrameSize(tabButton.intrinsicContentSize)
+      outline.window?.tab.accessoryView = tabButton
     }
     else {
       dataView.statusText.isHidden = true
+      outline.window?.tab.accessoryView = nil
     }
   }
   
