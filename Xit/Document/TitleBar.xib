@@ -268,7 +268,7 @@
         </menu>
     </objects>
     <resources>
-        <image name="NSFolder" width="128" height="128"/>
+        <image name="NSFolder" width="32" height="32"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSTouchBarSearchTemplate" width="19" height="30"/>

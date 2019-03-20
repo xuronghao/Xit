@@ -13,6 +13,7 @@ enum Signpost: UInt32
   case loadWorkspace = 8
   case detectIndexChanged = 9
   case loadTags = 10
+  case historyProgress = 11
 }
 
 func signpost(_ code: Signpost,

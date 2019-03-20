@@ -62,11 +62,11 @@ class HistoryCellView: NSTableCellView
     labelField.textColor = color
   }
   
-  func configure(entry: CommitEntry, repository: Branching & CommitReferencing)
+  func configure(row: Int, entry: CommitEntry, repository: Branching & CommitReferencing)
   {
     currentBranch = repository.currentBranch
     refs = repository.refs(at: entry.commit.sha)
-    labelField.stringValue = entry.commit.message ?? "(no message)"
+    labelField.stringValue = "\(row)" // entry.commit.message ?? "(no message)"
     self.entry = entry
     
     var views = refs.reversed().map {
